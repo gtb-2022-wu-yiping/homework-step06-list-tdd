@@ -13,11 +13,18 @@ public class App {
     }
 
     public List<String> run() {
+        List<String> lines = readTaskLines();
+        List<String> result = new ArrayList<>();
+        result.add("# To be done");
+        for (int i = 0; i < lines.size(); i++) {
+            result.add(String.format("%d %s", i + 1, lines.get(i)));
+        }
+        return result;
+    }
+
+    private List<String> readTaskLines() {
         try {
-            List<String> result = new ArrayList<>();
-            result.add("# To be done");
-            result.addAll(Files.readAllLines(Constants.TASKS_FILE_PATH));
-            return result;
+            return Files.readAllLines(Constants.TASKS_FILE_PATH);
         } catch (IOException e) {
             throw new TodoCannotReadFileException();
         }

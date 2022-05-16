@@ -10,9 +10,9 @@ class AppTest {
     void should_list_existing_tasks() {
         List<String> result = new App().run();
         Assertions.assertEquals(List.of(
-                "# TO be done",
-                "task01",
-                "task02"),
+                "# To be done",
+                "1 task01",
+                "2 task02"),
                 result);
     }
 }
