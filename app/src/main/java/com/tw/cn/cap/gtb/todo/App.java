@@ -17,16 +17,8 @@ public class App {
         List<Task> tasks = taskRepository.loadTasks();
         //处理Task
         List<String> result = new ArrayList<>();
-        result.add("# To be done");
-        tasks.stream()
-                .filter(task -> !task.isCompleted())
-                .map(Task::format)
-                .forEach(result::add);
-        result.add("# Completed");
-        tasks.stream()
-                .filter(task -> task.isCompleted())
-                .map(Task::format)
-                .forEach(result::add);
+        result.addAll(Section.tbd().format(tasks));
+        result.addAll(Section.completed().format(tasks));
         return result;
     }
 
